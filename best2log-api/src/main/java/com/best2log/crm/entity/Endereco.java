@@ -23,6 +23,9 @@ public class Endereco {
 
 	@Column(name = "cep")
 	private String cep;
+	
+	@Column(name = "estado")
+	private String estado;
 
 	@Column(name = "cidade")
 	private String cidade;
@@ -40,7 +43,7 @@ public class Endereco {
 	private String complemento;
 
 	@Column(name = "ativo")
-	private boolean ativo;
+	private Status ativo;
 	
 	@OneToMany(mappedBy = "endereco")
 	private Set<Funcionario> funcionarios;
@@ -70,6 +73,14 @@ public class Endereco {
 		this.cep = cep;
 	}
 
+	public String getEstado() {
+		return estado;
+	}
+	
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
 	public String getCidade() {
 		return cidade;
 	}
@@ -110,11 +121,11 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
-	public boolean getAtivo() {
+	public Status getAtivo() {
 		return ativo;
 	}
 
-	public void setAtivo(boolean ativo) {
+	public void setAtivo(Status ativo) {
 		this.ativo = ativo;
 	}
 
@@ -152,6 +163,7 @@ public class Endereco {
 
 	public void setAllAtributos(Endereco endereco) {
 		this.setCep(endereco.getCep());
+		this.setEstado(endereco.getEstado());
 		this.setCidade(endereco.getCidade());
 		this.setBairro(endereco.getBairro());
 		this.setLogradouro(endereco.getLogradouro());
@@ -167,6 +179,7 @@ public class Endereco {
 	public Endereco toEntity(EnderecoDTO enderecoDTO) {
     	Endereco endereco = new Endereco();
     	endereco.setCep(enderecoDTO.getCep());
+    	endereco.setEstado(enderecoDTO.getEstado());
     	endereco.setCidade(enderecoDTO.getCidade());
     	endereco.setBairro(enderecoDTO.getBairro());
     	endereco.setLogradouro(enderecoDTO.getLogradouro());

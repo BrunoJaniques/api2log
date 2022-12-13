@@ -42,7 +42,7 @@ public class Funcionario {
 	private TipoFuncionario funcaoFuncionario;
 
 	@Column(name = "status_funcionario")
-	private String statusFuncionario;
+	private Status statusFuncionario;
 
 	@ManyToOne
 	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
@@ -107,11 +107,11 @@ public class Funcionario {
 		this.funcaoFuncionario = funcaoFuncionario;
 	}
 
-	public String getStatusFuncionario() {
+	public Status getStatusFuncionario() {
 		return statusFuncionario;
 	}
 
-	public void setStatusFuncionario(String statusFuncionario) {
+	public void setStatusFuncionario(Status statusFuncionario) {
 		this.statusFuncionario = statusFuncionario;
 	}
 
@@ -146,7 +146,7 @@ public class Funcionario {
 		funcionario.setEmailFuncionario(funcionarioDTO.getLogin());
 		funcionario.setSenhaFuncionario(funcionarioDTO.getSenha());
 //    	funcionario.setFuncao(funcionarioDTO.getFuncao());
-		funcionario.setSenhaFuncionario(funcionarioDTO.getStatus());
+		funcionario.setStatusFuncionario(funcionarioDTO.getStatus());
 		return funcionario;
 	}
 
