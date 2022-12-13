@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.best2log.crm.dto.EnderecoDTO;
 import com.best2log.crm.entity.Endereco;
 import com.best2log.crm.service.EnderecoService;
 
@@ -60,5 +61,33 @@ public class EnderecoController {
             return new ResponseEntity<>(endereco, HttpStatus.NOT_FOUND);
         }
     }
+    
+    // DTOs
+    
+    @GetMapping("/dto")
+    public ResponseEntity<List<EnderecoDTO>> getAllEnderecoDTO() {
+        return new ResponseEntity<>(enderecoService.getAllEnderecoDTO(), HttpStatus.OK);
+    }
+
+    @GetMapping("/dto/{id}")
+    public ResponseEntity<EnderecoDTO> getEnderecoDTOById(@PathVariable Integer id) {
+        EnderecoDTO enderecoDTO = enderecoService.getEnderecoDTOById(id);
+        if (enderecoDTO != null) {
+            return new ResponseEntity<>(enderecoDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(enderecoDTO, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/dto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<EnderecoDTO> saveEnderecoDTO(@RequestBody EnderecoDTO enderecoDTO) {
+        return new ResponseEntity<>(enderecoService.saveEnderecoDTO(enderecoDTO), HttpStatus.CREATED);
+    }
+    
+    @PutMapping("/dto/{id}")
+    public ResponseEntity<EnderecoDTO> updateEnderecoDTO(@PathVariable Integer id, @RequestBody EnderecoDTO enderecoDTO) {
+    	return new ResponseEntity<>(enderecoService.updateEnderecoDTO(enderecoDTO, id), HttpStatus.OK);
+	}
     
 }

@@ -46,17 +46,6 @@ public class FuncionarioController {
         return new ResponseEntity<>(funcionarioService.saveFuncionario(funcionario), HttpStatus.CREATED);
     }
 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Funcionario> updateFuncionario(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
-//		Optional<Funcionario> dadosFuncionario = funcionarioService.updateFuncionario(funcionario, id);
-//		if (!dadosFuncionario.isPresent()) {
-//			return ResponseEntity.notFound().build();
-//		}
-//		funcionario.setIdFuncionario(id);
-//		funcionarioService.saveFuncionario(funcionario);
-//		return ResponseEntity.ok(dadosFuncionario.get());
-//	}
-    
     @PutMapping("/{id}")
     public ResponseEntity<Funcionario> updateFuncionario(@PathVariable Integer id, @RequestBody Funcionario funcionario) {
     	return new ResponseEntity<>(funcionarioService.updateFuncionario(funcionario, id), HttpStatus.OK);

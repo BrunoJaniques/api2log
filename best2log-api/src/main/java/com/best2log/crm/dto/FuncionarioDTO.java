@@ -1,6 +1,7 @@
 package com.best2log.crm.dto;
 
 import com.best2log.crm.entity.Funcionario;
+import com.best2log.crm.entity.Status;
 
 public class FuncionarioDTO {
 
@@ -11,7 +12,7 @@ public class FuncionarioDTO {
 	private String login;
 	private String senha;
 	private String funcao;
-	private String status;
+	private Status status;
 	private Integer idFuncionario;
 
 	public Integer getIdFuncionario() {
@@ -62,10 +63,10 @@ public class FuncionarioDTO {
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
 	}
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 	

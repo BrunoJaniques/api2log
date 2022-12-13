@@ -1,17 +1,19 @@
 package com.best2log.crm.dto;
 
 import com.best2log.crm.entity.Endereco;
+import com.best2log.crm.entity.Status;
 
 public class EnderecoDTO {
 	
 	private Integer idEndereco;
 	private String cep;
+	private String estado;
 	private String cidade;
 	private String bairro;
 	private String logradouro;
 	private String numero;
 	private String complemento;
-	private boolean ativo;
+	private Status ativo = Status.ATIVO; 
 	
 	public Integer getIdEndereco() {
 		return idEndereco;
@@ -24,6 +26,12 @@ public class EnderecoDTO {
 	}
 	public void setCep(String cep) {
 		this.cep = cep;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	public String getCidade() {
 		return cidade;
@@ -55,10 +63,12 @@ public class EnderecoDTO {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public boolean getAtivo() {
+	
+	
+	public Status getAtivo() {
 		return ativo;
 	}
-	public void setAtivo(boolean ativo) {
+	public void setAtivo(Status ativo) {
 		this.ativo = ativo;
 	}
 	
@@ -66,6 +76,7 @@ public class EnderecoDTO {
     	EnderecoDTO enderecoDTO = new EnderecoDTO();
     	enderecoDTO.setIdEndereco(endereco.getIdEndereco());
     	enderecoDTO.setCep(endereco.getCep());
+    	enderecoDTO.setEstado(endereco.getEstado());
     	enderecoDTO.setCidade(endereco.getCidade());
     	enderecoDTO.setBairro(endereco.getBairro());
     	enderecoDTO.setLogradouro(endereco.getLogradouro());
