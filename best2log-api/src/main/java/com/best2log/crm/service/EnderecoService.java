@@ -20,11 +20,16 @@ public class EnderecoService {
 		return enderecoRepository.findAll(); 
 	}
 	
-	public Endereco getEnderecoById(int id) {
+	public Endereco getEnderecoById(Integer id) {
 		return enderecoRepository.findById(id).orElse(null);
 	}
+	
+	public Endereco saveEndereco(Endereco endereco) {
+        return enderecoRepository.save(endereco);
+	}
 
-    public Endereco saveEndereco(Endereco endereco) {
+    public Endereco saveNewEndereco(Endereco endereco) {
+    	endereco.ativaStatus();
         return enderecoRepository.save(endereco);
     }
     
@@ -42,38 +47,39 @@ public class EnderecoService {
     // DTOs
     
     public List<EnderecoDTO> getAllEnderecoDTO(){
-		List<Endereco> listaEndereco = enderecoRepository.findAll(); 
+		List<Endereco> listaEndereco = getAllEndereco(); 
 		List<EnderecoDTO> listaEnderecoDTO = new ArrayList<>();
 		
 		// Popula a lista DTO com a lista Entity
 		for(Endereco endereco: listaEndereco) {
 			EnderecoDTO enderecoDTO = new EnderecoDTO();
-			enderecoDTO.toDTO(endereco);
+			enderecoDTO = enderecoDTO.toDTO(endereco);
 			listaEnderecoDTO.add(enderecoDTO);
 		}
 		return listaEnderecoDTO;
 	}
     
     public EnderecoDTO getEnderecoDTOById(Integer id) {
-		Endereco endereco = enderecoRepository.findById(id).orElse(null);
+		Endereco endereco = getEnderecoById(id);
 		EnderecoDTO enderecoDTO = new EnderecoDTO();
-		enderecoDTO.toDTO(endereco);
+		enderecoDTO = enderecoDTO.toDTO(endereco);
 		return enderecoDTO;
 	}
     
     public EnderecoDTO saveEnderecoDTO(EnderecoDTO enderecoDTO) {
     	Endereco endereco = new Endereco();
-    	endereco = saveEndereco(endereco.toEntity(enderecoDTO));
+    	endereco = saveNewEndereco(endereco.toEntity(enderecoDTO));
     	enderecoDTO = enderecoDTO.toDTO(endereco);
     	return enderecoDTO;
     }
     
     public EnderecoDTO updateEnderecoDTO (EnderecoDTO enderecoDTO, Integer id) {
-    	Endereco endereco = enderecoRepository.findById(id).orElse(null);
-    	endereco = endereco.toEntity(enderecoDTO);
-    	return enderecoDTO.toDTO(saveEndereco(endereco));
+    	Endereco enderecoExistente = getEnderecoById(id);
+    	Endereco enderecoNovo = new Endereco();
+    	enderecoNovo = enderecoNovo.toEntity(enderecoDTO);
+    	enderecoExistente.setAllAtributos(enderecoNovo);
+    	return enderecoDTO.toDTO(saveEndereco(enderecoExistente));
     }
-    
 
 }
 
