@@ -1,6 +1,5 @@
 package com.best2log.crm.config;
 
-
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -11,25 +10,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 public class CorsConfig {
-//	@Bean
-//	public CorsFilter corsFilter() {
-//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		CorsConfiguration config = new CorsConfiguration();
-//		config.setAllowCredentials(false); 
-//		config.addAllowedOrigin("*");
-//		config.addAllowedHeader("*");
-//		config.addAllowedMethod("GET");
-//		config.addAllowedMethod("POST");
-//		config.addAllowedMethod("PUT");		
-//		config.addAllowedMethod("DELETE");
-//		source.registerCorsConfiguration("/**", config);
-//		return new CorsFilter(source);
-//	}
-	
 	@Value("${app.endereco-front}")
 	private String enderecoFront;
-	
-	
+
 	@Bean
 	UrlBasedCorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();

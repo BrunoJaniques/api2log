@@ -22,13 +22,13 @@ public class EntregaProduto {
     private Integer idEntregaProduto;
     
     @ManyToOne
-	@JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
+	@JoinColumn(name = "id_produto", referencedColumnName = "id_produto", nullable = false)
     private Produto produto;
     
-    @Column(name = "quantidade")
+    @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
     
-    @Column(name = "valor_liquido")
+    @Column(name = "valor_liquido", nullable = false)
     private double valorLiquido;
     
     @Column(name = "status")
@@ -100,6 +100,10 @@ public class EntregaProduto {
 
 	public void setStatus(StatusPedido status) {
 		this.status = status;
+	}
+	
+	public void ativaStatusAguardando() {
+		this.status = status.AGUARDANDO_CONFERENCIA;
 	}
 
 	public LocalDateTime getDataArmazenamento() {

@@ -1,16 +1,17 @@
 package com.best2log.crm.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.best2log.crm.dto.FuncionarioDTO;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "funcionario")
@@ -18,39 +19,40 @@ public class Funcionario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	@Column(name = "id_funcionario")
 	private Integer idFuncionario;
-
-	@Column(name = "nome_funcionario")
+	
+	@NotNull(message = "Preencha o nome")
+	@Column(name = "nome_funcionario", nullable = false)
 	private String nomeFuncionario;
 
-	@Column(name = "cpf_funcionario")
+	@NotNull(message = "Preencha o cpf")
+	@Column(name = "cpf_funcionario", nullable = false)
 	private String cpfFuncionario;
 
-	@Column(name = "rg_funcionario")
+	@NotNull(message = "Preencha o rg")
+	@Column(name = "rg_funcionario", nullable = false)
 	private String rgFuncionario;
 
-	@Column(name = "email_funcionario")
+	@NotNull(message = "Preencha o email")
+	@Column(name = "email_funcionario", nullable = false)
 	private String emailFuncionario;
 
-	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-	@Column(name = "senha_funcionario")
+	@NotNull
+	@Column(name = "senha_funcionario", nullable = false)
 	private String senhaFuncionario;
 
-	@Column(name = "funcao_funcionario")
+	@Column(name = "funcao_funcionario", nullable = false)
 	private TipoFuncionario funcaoFuncionario;
 
 	@Column(name = "status_funcionario")
 	private Status statusFuncionario;
 
-//	@ManyToOne
-//	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
-//	private Endereco endereco;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
+	private Endereco endereco;
 
-	public Funcionario() {
-	}
-
+	
 	public Integer getIdFuncionario() {
 		return idFuncionario;
 	}
@@ -119,39 +121,12 @@ public class Funcionario {
 		this.statusFuncionario = statusFuncionario.ATIVO;
 	}
 	
-//	public Endereco getEndereco() {
-//		return endereco;
-//	}
-//
-//	public void setEndereco(Endereco endereco) {
-//		this.endereco = endereco;
-//	}
-
-	public void setAllAtributos(Funcionario funcionario) {
-		this.setNomeFuncionario(funcionario.getNomeFuncionario());
-//		this.setEndereco(funcionario.getEndereco());
-		this.setCpfFuncionario(funcionario.getCpfFuncionario());
-		this.setRgFuncionario(funcionario.getRgFuncionario());
-		this.setEmailFuncionario(funcionario.getEmailFuncionario());
-//		this.setSenhaFuncionario(funcionario.getSenhaFuncionario());
-		this.setFuncaoFuncionario(funcionario.getFuncaoFuncionario());
-		this.setStatusFuncionario(funcionario.getStatusFuncionario());
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public Funcionario toEntity(FuncionarioDTO funcionarioDTO) {
-		Funcionario funcionario = new Funcionario();
-		Endereco enderecoConvertido = new Endereco();
-//		enderecoConvertido = enderecoConvertido.toEntity(funcionarioDTO.getEndereco());
-
-		funcionario.setNomeFuncionario(funcionarioDTO.getNomeFuncionario());
-//		funcionario.setEndereco(enderecoConvertido);
-		funcionario.setCpfFuncionario(funcionarioDTO.getCpf());
-		funcionario.setRgFuncionario(funcionarioDTO.getRg());
-		funcionario.setEmailFuncionario(funcionarioDTO.getLogin());
-//		funcionario.setSenhaFuncionario(funcionarioDTO.getSenha());
-//    	funcionario.setFuncao(funcionarioDTO.getFuncao());
-		funcionario.setStatusFuncionario(funcionarioDTO.getStatus());
-		return funcionario;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 }

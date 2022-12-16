@@ -61,4 +61,32 @@ public class EntregaProdutoController {
         }
     }
     
+    // DTOs
+    
+//    @GetMapping("/dto")
+//    public ResponseEntity<List<EntregaProdutoDTO>> getAllEntregaProdutoDTO() {
+//        return new ResponseEntity<>(entregaProdutoService.getAllEntregaProdutoDTO(), HttpStatus.OK);
+//    }
+//
+//    @GetMapping("/dto/{id}")
+//    public ResponseEntity<EntregaProdutoDTO> getEntregaProdutoDTOById(@PathVariable Integer id) {
+//        EntregaProdutoDTO entregaProdutoDTO = entregaProdutoService.getEntregaProdutoDTOById(id);
+//        if (entregaProdutoDTO != null) {
+//            return new ResponseEntity<>(entregaProdutoDTO, HttpStatus.OK);
+//        } else {
+//            return new ResponseEntity<>(entregaProdutoDTO, HttpStatus.NOT_FOUND);
+//        }
+//    }
+//
+//    @PostMapping("/dto")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ResponseEntity<EntregaProdutoDTO> saveEntregaProdutoDTO(@RequestBody EntregaProdutoDTO entregaProdutoDTO) {
+//        return new ResponseEntity<>(entregaProdutoService.saveEntregaProdutoDTO(entregaProdutoDTO), HttpStatus.CREATED);
+//    }
+//    
+//    @PutMapping("/dto/{id}")
+//    public ResponseEntity<EntregaProdutoDTO> updateEntregaProdutoDTO(@PathVariable Integer id, @RequestBody EntregaProdutoDTO entregaProdutoDTO) {
+//    	return new ResponseEntity<>(entregaProdutoService.updateEntregaProdutoDTO(entregaProdutoDTO, id), HttpStatus.OK);
+//	}
+    
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.best2log.crm.dto.EmpresaParceiraDTO;
 import com.best2log.crm.entity.EmpresaParceira;
 import com.best2log.crm.service.EmpresaParceiraService;
 
@@ -60,5 +61,33 @@ public class EmpresaParceiraController {
             return new ResponseEntity<>(empresaParceira, HttpStatus.NOT_FOUND);
         }
     }
+    
+    // DTOs
+    
+    @GetMapping("/dto")
+    public ResponseEntity<List<EmpresaParceiraDTO>> getAllEmpresaParceiraDTO() {
+        return new ResponseEntity<>(empresaParceiraService.getAllEmpresaParceiraDTO(), HttpStatus.OK);
+    }
+
+    @GetMapping("/dto/{id}")
+    public ResponseEntity<EmpresaParceiraDTO> getEmpresaParceiraDTOById(@PathVariable Integer id) {
+        EmpresaParceiraDTO empresaParceiraDTO = empresaParceiraService.getEmpresaParceiraDTOById(id);
+        if (empresaParceiraDTO != null) {
+            return new ResponseEntity<>(empresaParceiraDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(empresaParceiraDTO, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/dto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<EmpresaParceiraDTO> saveEmpresaParceiraDTO(@RequestBody EmpresaParceiraDTO empresaParceiraDTO) {
+        return new ResponseEntity<>(empresaParceiraService.saveEmpresaParceiraDTO(empresaParceiraDTO), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/dto/{id}")
+    public ResponseEntity<EmpresaParceiraDTO> updateEmpresaParceiraDTO(@PathVariable Integer id, @RequestBody EmpresaParceiraDTO empresaParceiraDTO) {
+    	return new ResponseEntity<>(empresaParceiraService.updateEmpresaParceiraDTO(empresaParceiraDTO, id), HttpStatus.OK);
+	}
     
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.best2log.crm.dto.EnderecoDTO;
@@ -47,12 +48,12 @@ public class Endereco {
 	
 //	@OneToMany(mappedBy = "endereco")
 //	private Set<Funcionario> funcionarios;
-//	
-	@OneToMany(mappedBy = "endereco")
-	private Set<EmpresaParceira> empresasParceiras;
+
+//	@OneToMany(mappedBy = "endereco")
+//	private Set<EmpresaParceira> empresasParceiras;
 	
-	@OneToMany(mappedBy = "endereco")
-	private Set<Cliente> clientes;
+//	@OneToMany(mappedBy = "endereco")
+//	private Set<Cliente> clientes;
 	
 	@OneToMany(mappedBy = "endereco")
 	private Set<CentroDistribuicao> centrosDistribuicao;
@@ -141,21 +142,21 @@ public class Endereco {
 //		this.funcionarios = funcionarios;
 //	}
 
-	public Set<EmpresaParceira> getEmpresasParceiras() {
-		return empresasParceiras;
-	}
+//	public Set<EmpresaParceira> getEmpresasParceiras() {
+//		return empresasParceiras;
+//	}
+//
+//	public void setEmpresasParceiras(Set<EmpresaParceira> empresasParceiras) {
+//		this.empresasParceiras = empresasParceiras;
+//	}
 
-	public void setEmpresasParceiras(Set<EmpresaParceira> empresasParceiras) {
-		this.empresasParceiras = empresasParceiras;
-	}
-
-	public Set<Cliente> getClientes() {
-		return clientes;
-	}
-
-	public void setClientes(Set<Cliente> clientes) {
-		this.clientes = clientes;
-	}
+//	public Set<Cliente> getClientes() {
+//		return clientes;
+//	}
+//
+//	public void setClientes(Set<Cliente> clientes) {
+//		this.clientes = clientes;
+//	}
 
 	public Set<CentroDistribuicao> getCentrosDistribuicao() {
 		return centrosDistribuicao;
@@ -175,9 +176,9 @@ public class Endereco {
 		this.setComplemento(endereco.getComplemento());
 		this.setAtivo(endereco.getAtivo());
 //		this.setFuncionarios(endereco.getFuncionarios());
-		this.setEmpresasParceiras(endereco.getEmpresasParceiras());
-		this.setClientes(endereco.getClientes());
-		this.setCentrosDistribuicao(endereco.getCentrosDistribuicao());
+//		this.setEmpresasParceiras(endereco.getEmpresasParceiras());
+//		this.setClientes(endereco.getClientes());
+//		this.setCentrosDistribuicao(endereco.getCentrosDistribuicao());
 		}
 
 	public Endereco toEntity(EnderecoDTO enderecoDTO) {
@@ -189,7 +190,7 @@ public class Endereco {
     	endereco.setLogradouro(enderecoDTO.getLogradouro());
     	endereco.setNumero(enderecoDTO.getNumero());
     	endereco.setComplemento(enderecoDTO.getComplemento());
-    	endereco.setAtivo(enderecoDTO.getAtivo());
+//    	endereco.setAtivo(enderecoDTO.getAtivo());
 //    	endereco.setFuncionarios(enderecoDTO.getFuncionarios());
 //    	endereco.setEmpresasParceiras(enderecoDTO.getEmpresasParceiras());
 //    	endereco.setClientes(enderecoDTO.getClientes());

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.best2log.crm.dto.ProdutoDTO;
 import com.best2log.crm.entity.Produto;
 import com.best2log.crm.service.ProdutoService;
 
@@ -61,4 +62,32 @@ public class ProdutoController {
         }
     }
     
+    // DTOs
+    
+    @GetMapping("/dto")
+    public ResponseEntity<List<ProdutoDTO>> getAllProdutoDTO() {
+        return new ResponseEntity<>(produtoService.getAllProdutoDTO(), HttpStatus.OK);
+    }
+
+    @GetMapping("/dto/{id}")
+    public ResponseEntity<ProdutoDTO> getProdutoDTOById(@PathVariable Integer id) {
+        ProdutoDTO produtoDTO = produtoService.getProdutoDTOById(id);
+        if (produtoDTO != null) {
+            return new ResponseEntity<>(produtoDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(produtoDTO, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/dto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<ProdutoDTO> saveProdutoDTO(@RequestBody ProdutoDTO produtoDTO) {
+        return new ResponseEntity<>(produtoService.saveProdutoDTO(produtoDTO), HttpStatus.CREATED);
+    }
+    
+    @PutMapping("/dto/{id}")
+    public ResponseEntity<ProdutoDTO> updateProdutoDTO(@PathVariable Integer id, @RequestBody ProdutoDTO produtoDTO) {
+    	return new ResponseEntity<>(produtoService.updateProdutoDTO(produtoDTO, id), HttpStatus.OK);
+	}
+   
 }

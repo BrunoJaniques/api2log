@@ -31,8 +31,8 @@ public class Produto {
     @Column(name = "valor")
     private double valor;
 
-    @Column(name = "ativo")
-    private boolean ativo;
+    @Column(name = "status")
+    private Status status;
     
     @OneToMany(mappedBy = "produto")
 	private Set<EntregaProduto> entregasProdutos;
@@ -77,12 +77,16 @@ public class Produto {
 		this.valor = valor;
 	}
 
-	public boolean getAtivo() {
-		return ativo;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	public void ativaStatus() {
+		this.status = status.ATIVO;
 	}
 
 	public Set<EntregaProduto> getEntregasProdutos() {
@@ -92,14 +96,5 @@ public class Produto {
 	public void setEntregasProdutos(Set<EntregaProduto> entregasProdutos) {
 		this.entregasProdutos = entregasProdutos;
 	}
-
-	public void setAllAtributos(Produto produto) {
-        this.setCodigo(produto.getCodigo());
-        this.setNomeProduto(produto.getNomeProduto());
-        this.setCategoria(produto.getCategoria());
-        this.setAtivo(produto.getAtivo());
-        this.setValor(produto.getValor());
-        this.setEntregasProdutos(produto.getEntregasProdutos());
-    }
-
+	
 }

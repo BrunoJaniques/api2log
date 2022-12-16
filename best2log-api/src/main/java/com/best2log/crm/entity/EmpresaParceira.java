@@ -2,14 +2,17 @@ package com.best2log.crm.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,19 +24,19 @@ public class EmpresaParceira {
     @Column(name = "id_empresa_parceira")
     private Integer idEmpresaParceira;
 
-    @Column(name = "nome_empresa_parceira")
+    @Column(name = "nome_empresa_parceira", nullable = false)
     private String nomeEmpresaParceira;
 
-    @Column(name = "razao_social")
+    @Column(name = "razao_social", nullable = false)
     private String razaoSocial;
 
-    @Column(name = "cnpj")
+    @Column(name = "cnpj", nullable = false)
     private String cnpj;
 
-    @Column(name = "ativo")
-    private boolean ativo;
+    @Column(name = "status")
+    private Status status;
 
-    @ManyToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
     private Endereco endereco;
     
@@ -72,12 +75,16 @@ public class EmpresaParceira {
 		this.cnpj = cnpj;
 	}
 
-	public boolean getAtivo() {
-		return ativo;
+	public Status getStatus() {
+		return status;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	public void ativaStatus() {
+		this.status = status.ATIVO; 
 	}
 
 	public Endereco getEndereco() {
@@ -95,13 +102,5 @@ public class EmpresaParceira {
 	public void setOrdensDeEntrega(Set<OrdemDeEntrega> ordensDeEntrega) {
 		this.ordensDeEntrega = ordensDeEntrega;
 	}
-
-	public void setAllAtributos(EmpresaParceira empresaParceira) {
-        this.setNomeEmpresaParceira(empresaParceira.getNomeEmpresaParceira());
-        this.setRazaoSocial(empresaParceira.getRazaoSocial());
-        this.setCnpj(empresaParceira.getCnpj());
-        this.setAtivo(empresaParceira.getAtivo());
-        this.setEndereco(empresaParceira.getEndereco());
-        this.setOrdensDeEntrega(empresaParceira.getOrdensDeEntrega());
-    }
+	
 }

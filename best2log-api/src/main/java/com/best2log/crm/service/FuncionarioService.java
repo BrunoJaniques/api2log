@@ -40,7 +40,7 @@ public class FuncionarioService {
 	
 	public Funcionario updateFuncionario(Funcionario funcionario, Integer id){
         Funcionario funcionarioExistenteNoBanco = getFuncionarioById(id);
-        funcionarioExistenteNoBanco.setAllAtributos(funcionario);
+        funcionarioExistenteNoBanco = setAllAtributos(funcionario);
         return saveFuncionario(funcionarioExistenteNoBanco);
     }
 
@@ -82,20 +82,39 @@ public class FuncionarioService {
         Funcionario funcionarioExistente = getFuncionarioById(id);
         Funcionario funcionarioNovo = new Funcionario();
         funcionarioNovo = toEntity(funcionarioDTO);
-        funcionarioExistente.setAllAtributos(funcionarioNovo); 
+        funcionarioExistente = setAllAtributos(funcionarioNovo); 
         return toDTO(saveFuncionario(funcionarioExistente));
+	}
+	
+	// Set All Atributos
+	
+	public Funcionario setAllAtributos(Funcionario funcionario) {
+		Funcionario func = new Funcionario();
+		
+		func.setNomeFuncionario(funcionario.getNomeFuncionario());
+		func.setEndereco(funcionario.getEndereco());
+		func.setCpfFuncionario(funcionario.getCpfFuncionario());
+		func.setRgFuncionario(funcionario.getRgFuncionario());
+		func.setEmailFuncionario(funcionario.getEmailFuncionario());
+//		func.setSenhaFuncionario(funcionario.getSenhaFuncionario());
+		func.setFuncaoFuncionario(funcionario.getFuncaoFuncionario());
+		func.setStatusFuncionario(funcionario.getStatusFuncionario());
+		
+		return func;
 	}
 	
 	// Conversores
 	
 	public FuncionarioDTO toDTO(Funcionario funcionario) {
-    	EnderecoDTO enderecoDTO = new EnderecoDTO();
-//    	enderecoDTO = enderecoDTO.toDTO(funcionario.getEndereco());
     	FuncionarioDTO funcionarioDTO = new FuncionarioDTO();
     	
     	funcionarioDTO.setIdFuncionario(funcionario.getIdFuncionario());
     	funcionarioDTO.setNomeFuncionario(funcionario.getNomeFuncionario());
-//    	funcionarioDTO.setEndereco(enderecoDTO);
+    	if(funcionario.getEndereco() != null) {
+    		EnderecoDTO enderecoDTO = new EnderecoDTO();
+    		enderecoDTO = enderecoDTO.toDTO(funcionario.getEndereco());
+    		funcionarioDTO.setEndereco(enderecoDTO);
+    	}	
     	funcionarioDTO.setCpf(funcionario.getCpfFuncionario());
     	funcionarioDTO.setRg(funcionario.getRgFuncionario());
     	funcionarioDTO.setLogin(funcionario.getEmailFuncionario());
@@ -107,10 +126,10 @@ public class FuncionarioService {
 	public Funcionario toEntity(FuncionarioDTO funcionarioDTO) {
 		Funcionario funcionario = new Funcionario();
 		Endereco enderecoConvertido = new Endereco();
-//		enderecoConvertido = enderecoConvertido.toEntity(funcionarioDTO.getEndereco());
+		enderecoConvertido = enderecoConvertido.toEntity(funcionarioDTO.getEndereco());
 
 		funcionario.setNomeFuncionario(funcionarioDTO.getNomeFuncionario());
-//		funcionario.setEndereco(enderecoConvertido);
+		funcionario.setEndereco(enderecoConvertido);
 		funcionario.setCpfFuncionario(funcionarioDTO.getCpf());
 		funcionario.setRgFuncionario(funcionarioDTO.getRg());
 		funcionario.setEmailFuncionario(funcionarioDTO.getLogin());
@@ -118,6 +137,7 @@ public class FuncionarioService {
 //    	funcionario.setFuncao(funcionarioDTO.getFuncao());
 		funcionario.setStatusFuncionario(funcionarioDTO.getStatus());
 		return funcionario;
+		
 	}
 	
 }

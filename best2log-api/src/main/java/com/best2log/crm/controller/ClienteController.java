@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.best2log.crm.dto.ClienteDTO;
 import com.best2log.crm.entity.Cliente;
 import com.best2log.crm.service.ClienteService;
 
@@ -60,5 +61,33 @@ public class ClienteController {
             return new ResponseEntity<>(cliente, HttpStatus.NOT_FOUND);
         }
     }
+    
+// DTOs
+    
+    @GetMapping("/dto")
+    public ResponseEntity<List<ClienteDTO>> getAllClienteDTO() {
+        return new ResponseEntity<>(clienteService.getAllClienteDTO(), HttpStatus.OK);
+    }
+
+    @GetMapping("/dto/{id}")
+    public ResponseEntity<ClienteDTO> getClienteDTOById(@PathVariable Integer id) {
+        ClienteDTO clienteDTO = clienteService.getClienteDTOById(id);
+        if (clienteDTO != null) {
+            return new ResponseEntity<>(clienteDTO, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(clienteDTO, HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/dto")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<ClienteDTO> saveClienteDTO(@RequestBody ClienteDTO clienteDTO) {
+        return new ResponseEntity<>(clienteService.saveClienteDTO(clienteDTO), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/dto/{id}")
+    public ResponseEntity<ClienteDTO> updateClienteDTO(@PathVariable Integer id, @RequestBody ClienteDTO clienteDTO) {
+    	return new ResponseEntity<>(clienteService.updateClienteDTO(clienteDTO, id), HttpStatus.OK);
+	}
     
 }

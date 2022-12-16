@@ -2,15 +2,18 @@ package com.best2log.crm.entity;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "cliente")
@@ -21,18 +24,35 @@ public class Cliente {
 	@Column(name = "id_cliente")
 	private Integer idCliente;
 	
-	@Column(name = "nome")
+	@NotBlank(message = "Preencha o nome")
+	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@Column(name = "cpf")
+	@NotBlank(message = "Preencha o nome")
+	@Column(name = "cpf", nullable = false)
 	private String cpf;
 	
-	@ManyToOne
+	@Column(name = "status")
+	private Status status;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "id_endereco", referencedColumnName = "id_endereco")
 	private Endereco endereco;
 	
 	@OneToMany(mappedBy = "cliente")
 	private Set<EntregaProduto> entregasProdutos;
+
+	public Status getStatus() {
+		return status;
+	}
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	public void ativaStatus() {
+		this.status = status.ATIVO;
+	}
 
 	public Integer getIdCliente() {
 		return idCliente;
@@ -78,7 +98,7 @@ public class Cliente {
 		this.setNome(cliente.getNome());
 		this.setCpf(cliente.getCpf());
 		this.setEndereco(cliente.getEndereco());
-		this.setEntregasProdutos(cliente.getEntregasProdutos());
+//		this.setEntregasProdutos(cliente.getEntregasProdutos());
 	}
 	
 }
