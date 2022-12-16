@@ -1,5 +1,6 @@
 package com.best2log.crm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.best2log.crm.dto.EnderecoDTO;
 import com.best2log.crm.dto.ProdutoDTO;
+import com.best2log.crm.entity.Endereco;
 import com.best2log.crm.entity.Produto;
 import com.best2log.crm.service.ProdutoService;
 

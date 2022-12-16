@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.best2log.crm.dto.EmpresaParceiraDTO;
+import com.best2log.crm.dto.FuncionarioDTO;
 import com.best2log.crm.entity.EmpresaParceira;
 import com.best2log.crm.service.EmpresaParceiraService;
 

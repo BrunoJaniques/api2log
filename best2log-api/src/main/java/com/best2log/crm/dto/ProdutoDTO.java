@@ -1,5 +1,7 @@
 package com.best2log.crm.dto;
 
+import javax.persistence.Column;
+
 import com.best2log.crm.entity.Status;
 
 public class ProdutoDTO {

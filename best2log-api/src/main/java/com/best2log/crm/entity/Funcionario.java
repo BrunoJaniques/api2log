@@ -8,10 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+
+import com.best2log.crm.dto.FuncionarioDTO;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "funcionario")
@@ -22,25 +25,26 @@ public class Funcionario {
 	@Column(name = "id_funcionario")
 	private Integer idFuncionario;
 	
-	@NotNull(message = "Preencha o nome")
+	@NotBlank(message = "Preencha o nome")
 	@Column(name = "nome_funcionario", nullable = false)
 	private String nomeFuncionario;
 
-	@NotNull(message = "Preencha o cpf")
+	@NotBlank(message = "Preencha o cpf")
 	@Column(name = "cpf_funcionario", nullable = false)
 	private String cpfFuncionario;
 
-	@NotNull(message = "Preencha o rg")
+	@NotBlank(message = "Preencha o rg")
 	@Column(name = "rg_funcionario", nullable = false)
 	private String rgFuncionario;
 
-	@NotNull(message = "Preencha o email")
+	@NotBlank(message = "Preencha o email")
 	@Column(name = "email_funcionario", nullable = false)
 	private String emailFuncionario;
 
-	@NotNull
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	@Column(name = "senha_funcionario", nullable = false)
 	private String senhaFuncionario;
+
 
 	@Column(name = "funcao_funcionario", nullable = false)
 	private TipoFuncionario funcaoFuncionario;

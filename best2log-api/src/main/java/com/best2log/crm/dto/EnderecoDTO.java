@@ -1,6 +1,7 @@
 package com.best2log.crm.dto;
 
 import com.best2log.crm.entity.Endereco;
+import com.best2log.crm.entity.Status;
 
 public class EnderecoDTO {
 	
@@ -12,7 +13,7 @@ public class EnderecoDTO {
 	private String logradouro;
 	private String numero;
 	private String complemento;
-//	private Status ativo;
+	private Status ativo; 
 	
 	public Integer getIdEndereco() {
 		return idEndereco;
@@ -63,13 +64,14 @@ public class EnderecoDTO {
 		this.complemento = complemento;
 	}
 	
-//	public Status getAtivo() {
-//		return ativo;
-//	}
-//	public void setAtivo(Status ativo) {
-//		this.ativo = ativo;
-//	}
-//	
+	
+	public Status getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(Status ativo) {
+		this.ativo = ativo;
+	}
+	
 	public EnderecoDTO toDTO(Endereco endereco) {
     	EnderecoDTO enderecoDTO = new EnderecoDTO();
     	enderecoDTO.setIdEndereco(endereco.getIdEndereco());
@@ -80,7 +82,7 @@ public class EnderecoDTO {
     	enderecoDTO.setLogradouro(endereco.getLogradouro());
     	enderecoDTO.setNumero(endereco.getNumero());
     	enderecoDTO.setComplemento(endereco.getComplemento());
-//    	enderecoDTO.setAtivo(endereco.getAtivo());
+    	enderecoDTO.setAtivo(endereco.getAtivo());
     	return enderecoDTO;
     }
 	

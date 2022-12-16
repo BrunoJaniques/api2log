@@ -1,5 +1,13 @@
 package com.best2log.crm.dto;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
+
+import com.best2log.crm.entity.Endereco;
 import com.best2log.crm.entity.Status;
 
 public class ClienteDTO {

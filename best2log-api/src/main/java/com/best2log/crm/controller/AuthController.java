@@ -42,6 +42,9 @@ public class AuthController {
 
 		funcionario = funcionarioService.saveNewFuncionario(funcionario);
 
+		// Gerando o token JWT a partir do e-mail do funcionario
+		// String token = jwtUtil.generateToken(funcionario.getEmail());
+
 		// Gerando o token JWT a partir dos dados do funcionario
 		Funcionario funcionarioResumido = new Funcionario();
 		funcionarioResumido.setIdFuncionario(funcionario.getIdFuncionario());
@@ -50,6 +53,7 @@ public class AuthController {
 		funcionarioResumido.setRgFuncionario(funcionario.getRgFuncionario());
 		funcionarioResumido.setCpfFuncionario(funcionario.getCpfFuncionario());
 		funcionarioResumido.setFuncaoFuncionario(funcionario.getFuncaoFuncionario());
+		funcionarioResumido.setStatusFuncionario(funcionario.getStatusFuncionario());
 		String token = jwtUtil.generateTokenWithUserData(funcionarioResumido);
 
 
@@ -67,6 +71,10 @@ public class AuthController {
 
 			// Autenticando as credenciais de login
 			authManager.authenticate(authInputToken);
+
+			// Se o processo de autenticacao foi concluido com sucesso - etapa anterior,
+			// eh gerado o JWT
+			// String token = jwtUtil.generateToken(body.getEmail());
 
 			Funcionario funcionario = funcionarioService.findByEmail(credenciaisLoginDTO.getEmail());
 			Funcionario funcionarioResumido = new Funcionario();

@@ -190,7 +190,7 @@ public class Endereco {
     	endereco.setLogradouro(enderecoDTO.getLogradouro());
     	endereco.setNumero(enderecoDTO.getNumero());
     	endereco.setComplemento(enderecoDTO.getComplemento());
-//    	endereco.setAtivo(enderecoDTO.getAtivo());
+    	endereco.setAtivo(enderecoDTO.getAtivo());
 //    	endereco.setFuncionarios(enderecoDTO.getFuncionarios());
 //    	endereco.setEmpresasParceiras(enderecoDTO.getEmpresasParceiras());
 //    	endereco.setClientes(enderecoDTO.getClientes());

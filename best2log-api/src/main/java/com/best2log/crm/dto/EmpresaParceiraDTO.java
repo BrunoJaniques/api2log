@@ -1,5 +1,9 @@
 package com.best2log.crm.dto;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import com.best2log.crm.entity.Status;
 
 public class EmpresaParceiraDTO {

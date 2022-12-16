@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.best2log.crm.dto.EntregaProdutoDTO;
+import com.best2log.crm.dto.ProdutoDTO;
 import com.best2log.crm.entity.EntregaProduto;
 import com.best2log.crm.service.EntregaProdutoService;
 
